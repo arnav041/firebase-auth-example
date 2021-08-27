@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import { onAuthStateChanged } from 'firebase/auth';
+import React from 'react';
 import './App.css';
+import SignIn from './components/sign-in';
+import { auth } from './firebase';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth =  onAuthStateChanged(auth, (user) => {
+      this.setState({ currentUser: user }, () => console.log(user))
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div className="app">
+        <SignIn currentUser={this.state.currentUser} />
+      </div>
+    );
+  }
 }
 
 export default App;
