@@ -3,7 +3,6 @@ import { signInWithGoogle } from '../../firebase';
 import { auth } from '../../firebase'
 import './styles.css';
 
-
 const SignIn = ({ currentUser }) => {
     return (
         <div className='container' >

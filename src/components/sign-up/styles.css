@@ -1,0 +1,36 @@
+.container {
+    width: 330px;
+    padding: 45px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 7px;
+}
+
+.submit-btn {
+    background-color: rgb(5, 5, 5);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
+.google-signin {
+    background-color: dodgerblue;
+}

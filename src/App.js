@@ -2,8 +2,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { onSnapshot } from 'firebase/firestore';
 import React from 'react';
 import './App.css';
-import SignIn from './components/sign-in';
 import { auth, createUserProfileDocument } from './firebase';
+import SignInSignUp from './pages/signin-signup';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class App extends React.Component {
     this.unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
-
         onSnapshot(userRef, (snapshot) => {
           this.setState({
             currentUser: {
@@ -31,7 +30,7 @@ class App extends React.Component {
         })
       }
       else {
-        this.setState({ currentUser: null })
+        this.setState({ currentUser: userAuth })
       }
 
 
@@ -45,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <SignIn currentUser={this.state.currentUser} />
+        <SignInSignUp currentUser={this.state.currentUser} />
       </div>
     );
   }
