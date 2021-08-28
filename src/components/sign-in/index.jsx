@@ -9,8 +9,19 @@ const SignIn = ({ currentUser }) => {
         <div className='container' >
             <h1>SIGN IN</h1>
             <form className='form' >
-                <input type="email" className='form-input' required />
-                <input type="password" className='form-input' required />
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className='form-input'
+                    required />
+
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    className='form-input'
+                    required />
+
                 <button type='submit' className='submit-btn' >SIGN IN</button>
                 {
                     !currentUser ?
